@@ -78,4 +78,4 @@ typography:
 
   base:      Marianne
   headings:  Marianne
-  monospace: "'Courier New', Courier, monospace"
+  monospace: "'Courier New', Courier, monospace" # Marianne n'est pas une police monospace
