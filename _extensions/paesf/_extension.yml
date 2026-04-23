@@ -48,6 +48,7 @@ contributes:
         alt: Logo Direction générale du Trésor
         path: "_extensions/paesf/logo-dgt.png"
       filters:
+        - typst/resolve-logo-path.lua
         - typst/titre-section.lua
         - typst/encadre.lua
       template-partials:
