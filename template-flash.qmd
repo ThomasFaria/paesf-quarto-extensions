@@ -1,0 +1,55 @@
+---
+format:
+  paesf-typst:
+    number-sections: false
+    papersize: a4
+    margin:
+      x: 1.5cm
+      y: 1cm
+    fontsize: 10pt
+    fig-width: 7.5
+    fig-height: 5
+    keep-typ: false
+    output-file: "flash-financement-economie.pdf"
+    vertical-align: top
+
+authors:
+  - name: "Thomas Faria"
+  # - name : ""
+
+metadata:
+  title: "Flash mensuel - Financement de l'économie française, février 2026"
+  subtitle: "(flash rédigé sur la base des données disponibles au 21 avril 2026)"
+  direction: "Direction générale du Trésor"
+  bureau: "Pôle d'analyse économique du secteur financier"
+  number: "Avril 2026 - n°XXX"
+---
+
+::: encadre
+-   **Lorem** ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+-   *Lorem* ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+:::
+
+# Financement des ménages
+
+{{< pagebreak >}}
+
+# Placements des ménages
+
+{{< pagebreak >}}
+
+# Endettement des entreprises
+
+{{< pagebreak >}}
+
+# Accès des entreprises au crédit, trésorerie et défaillances
+
+{{< pagebreak >}}
+
+# Comparaisons internationales
+
+{{< pagebreak >}}
+
+# Calendrier de publication des données
