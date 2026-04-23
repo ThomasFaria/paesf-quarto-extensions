@@ -1,0 +1,69 @@
+<header role="banner" class="fr-header">
+  <div class="fr-header__body">
+    <div class="fr-container">
+      <div class="fr-header__body-row">
+        <div class="fr-header__brand fr-enlarge-link">
+          <div class="fr-header__brand-top">
+            <div class="fr-header__logo">
+                <p class="fr-logo"> Ministère<br>De l'économie<br>des finances<br>et de la souveraineté<br>industrielle, énergétique<br>et numérique </p>
+            </div>
+            <div class="fr-header__operator">
+              <a href="https://www.tresor.economie.gouv.fr/" title="Direction générale du Trésor - Retour à l'accueil">
+              </a>
+            </div>
+          </div>
+          <div class="fr-header__service">
+            <!-- <p class="fr-header__service-title"> Direction générale<br>du Trésor </p> -->
+            <p class="fr-header__service-tagline">Direction générale<br>du Trésor </p>
+          </div>
+          <div class="fr-header__navbar">
+            <button
+              class="fr-btn fr-btn--search"
+              aria-controls="header-search"
+              data-fr-opened="false"
+              title="Rechercher">
+              Rechercher
+            </button>
+            <button
+              class="fr-btn--menu fr-btn"
+              data-fr-opened="false"
+              aria-controls="modal-menu"
+              aria-haspopup="menu"
+              id="button-menu"
+              title="Menu">
+              Menu
+            </button>
+          </div>
+        </div>
+
+        <div class="fr-header__tools">
+          <div class="fr-header__search fr-modal" id="header-search">
+            <div class="fr-search-bar" role="search">
+              <label class="fr-label" for="header-search-input">Rechercher</label>
+              <input
+                class="fr-input"
+                placeholder="Rechercher"
+                id="header-search-input"
+                type="search"
+                aria-describedby="header-search-messages">
+              <div class="fr-messages-group" id="header-search-messages" aria-live="polite"></div>
+              <button title="Rechercher" type="button" class="fr-btn">Rechercher</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fr-header__menu fr-modal" id="modal-menu">
+    <div class="fr-container">
+      <button aria-controls="modal-menu" class="fr-link--close fr-link">Fermer</button>
+      <div class="fr-header__menu-links"></div>
+      <nav class="fr-nav" id="header-navigation" role="navigation" aria-label="Menu principal">
+        <ul class="fr-nav__list" id="dsfr-nav-list">
+          <!-- Peuplé dynamiquement depuis la navbar Quarto via dsfr-scripts.html -->
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,45 @@
+---
+format:
+  paesf-typst:
+    number-sections: false
+    papersize: a4
+    margin:
+      x: 1.5cm
+      y: 1cm
+    fontsize: 10pt
+    mainfont: libertinus serif
+    fig-width: 7.5
+    fig-height: 5
+    keep-typ: false
+    output-file: "veille-fi.pdf"
+    vertical-align: top
+
+authors:
+  - name: "Thomas Faria"
+  # - name : ""
+
+metadata:
+  title: "Veille du secteur financier - avril 2026"
+  subtitle: "(les données sont cloturées le XX)"
+  direction: "Direction générale du Trésor"
+  bureau: "Pôle d'analyse économique du secteur financier"
+  number: "Avril 2026 - n°XXX"
+---
+
+::: encadre
+-   **Lorem** ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+
+-   *Lorem* ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+
+:::
+
+
+# Marché monétaire
+
+{{< pagebreak >}}
+
+# Marché obligataire
+
+# Marché des changes
+
+# Marché actions

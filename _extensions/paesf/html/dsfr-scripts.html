@@ -1,0 +1,139 @@
+<script>
+(function () {
+
+  /* ---------------------------------------------------------------
+   * 1. Ajustement du padding-top selon la hauteur réelle du fr-header
+   *    Le fr-header est en position: fixed — le CSS a un fallback 88px.
+   *    On mesure la hauteur exacte et l'injecte via un <style> tag
+   *    pour pouvoir utiliser !important et passer la règle Quarto.
+   * ------------------------------------------------------------- */
+  function adjustHeaderPadding() {
+    var header = document.querySelector('.fr-header');
+    if (!header) return;
+    var h = header.offsetHeight;
+    var el = document.getElementById('dsfr-padding-override');
+    if (!el) {
+      el = document.createElement('style');
+      el.id = 'dsfr-padding-override';
+      document.head.appendChild(el);
+    }
+    el.textContent = 'body { padding-top: ' + h + 'px !important; }';
+  }
+
+  /* ---------------------------------------------------------------
+   * 2. Peuplement du fr-nav depuis la navbar Quarto (masquée)
+   *    Quarto génère des hrefs relatifs corrects par page dans sa
+   *    navbar Bootstrap. On les clone dans la liste fr-nav__list
+   *    pour bénéficier de chemins toujours justes sans les coder.
+   * ------------------------------------------------------------- */
+  function populateNav() {
+    var quartoNav = document.querySelector('#quarto-header .navbar-nav');
+    var frNavList = document.getElementById('dsfr-nav-list');
+    if (!quartoNav || !frNavList) return;
+
+    quartoNav.querySelectorAll('a.nav-link').forEach(function (link) {
+      var li = document.createElement('li');
+      li.className = 'fr-nav__item';
+
+      var a = document.createElement('a');
+      a.className = 'fr-nav__link';
+      a.href = link.href;
+      a.textContent = link.textContent.trim();
+
+      if (link.getAttribute('aria-current') === 'page' || link.classList.contains('active')) {
+        a.setAttribute('aria-current', 'page');
+      }
+
+      li.appendChild(a);
+      frNavList.appendChild(li);
+    });
+  }
+
+  /* ---------------------------------------------------------------
+   * 3. Injection du lien PDF dans le bloc quarto-title-meta
+   *    Le href correct (relatif à chaque page) est récupéré depuis
+   *    la navbar Quarto masquée, qui le calcule à la compilation.
+   * ------------------------------------------------------------- */
+  function injectPdfLink() {
+    var meta = document.querySelector('meta[name="pdf-download"]');
+    // download: "" dans le frontmatter → balise présente mais vide → on n'affiche rien
+    if (meta !== null && meta.getAttribute('content') === '') return;
+
+    var pdfHref;
+    if (meta && meta.getAttribute('content')) {
+      // download: "chemin/vers/fichier.pdf" → on utilise ce chemin
+      pdfHref = meta.getAttribute('content');
+    } else {
+      // comportement par défaut : lien PDF de la navbar Quarto masquée
+      var pdfNavLink = document.querySelector('#quarto-header a[href*=".pdf"]');
+      if (!pdfNavLink) return; // aucun PDF disponible, on n'affiche pas de lien
+      pdfHref = pdfNavLink.href;
+    }
+
+    var titleMeta = document.querySelector('.quarto-title-meta');
+    if (!titleMeta) return;
+
+    var div = document.createElement('div');
+    div.innerHTML =
+      '<div class="quarto-title-meta-heading">Téléchargement</div>' +
+      '<div class="quarto-title-meta-contents">' +
+        '<a href="' + pdfHref + '" target="_blank" rel="noopener noreferrer" ' +
+        'class="fr-link fr-link--icon-left fr-icon-file-pdf-line" ' +
+        'style="font-size:0.85rem">' +
+        'Version PDF</a>' +
+      '</div>';
+    titleMeta.appendChild(div);
+  }
+
+  /* ---------------------------------------------------------------
+   * 4. Brancher la barre de recherche DSFR sur window.quartoOpenSearch
+   *    Le composant DSFR est visuel uniquement. On délègue la logique
+   *    à Quarto (index fuse + overlay autocomplete).
+   *    quartoOpenSearch est défini dans quarto-search.js après DOMContentLoaded.
+   * ------------------------------------------------------------- */
+  function wireSearch() {
+    var input = document.getElementById('header-search-input');
+    var btn   = document.querySelector('#header-search .fr-btn[title="Rechercher"]');
+    if (!input && !btn) return;
+
+    function openSearch(e) {
+      e.preventDefault();
+      if (typeof window.quartoOpenSearch === 'function') {
+        window.quartoOpenSearch();
+      }
+    }
+
+    if (input) {
+      input.addEventListener('click', openSearch);
+    }
+    if (btn) btn.addEventListener('click', openSearch);
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    populateNav();
+    injectPdfLink();
+    wireSearch();
+    adjustHeaderPadding(); // premier appel (fonts/CSS peut ne pas être chargés)
+
+    // ResizeObserver : recalcule à chaque changement de hauteur du header,
+    // y compris quand Marianne se charge et que le header grandit/rétrécit.
+    var header = document.querySelector('.fr-header');
+    if (header && window.ResizeObserver) {
+      new ResizeObserver(adjustHeaderPadding).observe(header);
+    }
+
+    /* ---------------------------------------------------------------
+     * 5. Masquage du fr-header au scroll — via Headroom.js
+     *    Headroom.js est déjà chargé par Quarto (quarto-nav/headroom.min.js).
+     *    Il ajoute headroom--pinned (visible) / headroom--unpinned (caché).
+     * ------------------------------------------------------------- */
+    if (header && window.Headroom) {
+      var headroom = new window.Headroom(header, { tolerance: 5 });
+      headroom.init();
+    }
+  });
+
+  // window.load : filet de sécurité après chargement complet de toutes les ressources
+  window.addEventListener('load', adjustHeaderPadding);
+})();
+</script>

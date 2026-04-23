@@ -1,0 +1,137 @@
+/*-- scss:defaults --*/
+
+$border-radius:          0; // DSFR n'utilise pas de radius
+
+
+/*-- scss:rules --*/
+
+// ─── Navbar Bootstrap masquée — fr-header prend le relais ────────────────────
+#quarto-header {
+  display: none !important;
+}
+
+// Quarto ajoute un padding-top au body pour sa navbar fixe : on l'annule
+body {
+  padding-top: 0 !important;
+}
+
+// ─── fr-header : position fixe — remplace exactement la navbar Quarto ────────
+// Le header est injecté dans <main> par Quarto (include-before-body).
+// La seule manière fiable d'obtenir 100 % de largeur depuis un grid item
+// est position: fixed, qui positionne relativement au viewport.
+// Un script JS (dsfr-scripts.html) mesure la hauteur réelle du header
+// et injecte un padding-top sur le body pour compenser.
+.fr-header {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  z-index: 1040; // au-dessus du sidebar Quarto (z-index: 1030)
+  transition: transform 0.3s ease;
+}
+
+// Masquage au scroll (géré par Headroom.js, déjà chargé par quarto-nav.js)
+.fr-header.headroom--unpinned {
+  transform: translateY(-100%);
+}
+
+// ─── fr-footer : grid-column étendu + pleine largeur ─────────────────────────
+// Le footer est un enfant direct de #quarto-content (CSS grid).
+// grid-column: 1 / -1 lui permet de couvrir toutes les colonnes de la grille.
+#quarto-content > .fr-footer {
+  grid-column: 1 / -1;
+  width: 100%;
+}
+
+// ─── Police Marianne sur tout le contenu Quarto ───────────────────────────────
+html, body {
+  font-family: "Marianne", arial, sans-serif;
+  color: $brand-noir;
+  text-align: justify;
+}
+
+// ─── Titres au format DSFR ────────────────────────────────────────────────────
+h1 {
+  color: $brand-bleu-france;
+  font-weight: 700;
+  font-family: "Marianne", arial, sans-serif;
+  border-bottom: 3px solid $brand-bleu-france;
+  padding-bottom: 0.5rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  background: none;
+  border-radius: 0;
+  text-align: left;
+}
+
+h2 {
+  color: $brand-bleu-france;
+  font-weight: 700;
+  font-family: "Marianne", arial, sans-serif;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  text-align: left;
+}
+
+h3 {
+  color: $brand-bleu-france;
+  font-weight: 700;
+  font-family: "Marianne", arial, sans-serif;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  text-align: left;
+}
+
+// ─── Encadré conservé avec bordure bleue DSFR ────────────────────────────────
+.encadre {
+  border: 3px solid $brand-bleu-france;
+  padding: 15px;
+  margin: 20px 0;
+  border-radius: 0;
+}
+
+// ─── Espacement du contenu ────────────────────────────────────────────────────
+// Le padding-top du body est géré dynamiquement par dsfr-scripts.html
+// (qui mesure offsetHeight du fr-header fixe et l'injecte via une règle CSS).
+// On met ici un fallback approximatif pour le premier rendu.
+body {
+  padding-top: 160px; // fallback large avant mesure JS (remplacé dynamiquement)
+}
+
+// Espace au-dessus du footer
+.fr-footer {
+  margin-top: 3rem;
+}
+
+#quarto-content {
+  padding-bottom: 2rem;
+}
+
+// ─── Figures et légendes ─────────────────────────────────────────────────────
+figcaption {
+  margin: auto;
+  text-align: center;
+  font-weight: bold;
+  color: $brand-gris-425;
+}
+
+figcaption .figure-number,
+figcaption .table-number,
+.figure-number,
+.table-number {
+  display: none;
+}
+
+// Masquer les légendes pour les tableaux uniquement (pas pour les graphiques)
+.quarto-float-tbl figcaption {
+  display: none;
+}
+
+// ─── Caption sous les graphiques OJS (Source, Calculs, Dernier point) ────────
+.sankey-caption {
+  font-size: 0.75rem;
+  color: $brand-gris-425;
+  margin-top: 0.25rem;
+  margin-bottom: 0;
+  text-align: left;
+}

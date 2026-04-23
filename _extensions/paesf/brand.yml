@@ -1,0 +1,81 @@
+meta:
+  name: PAESF Publications
+
+logo:
+  large: logo-dgt.png
+
+# ── Palette DSFR ─────────────────────────────────────────────────────────────
+color:
+  palette:
+    # Couleurs fondamentales DSFR
+    bleu-france:    "#000091"   # --blue-france-sun-113
+    rouge-marianne: "#E1000F"   # --red-marianne-425
+    blanc:          "#FFFFFF"
+    noir:           "#161616"
+    # Niveaux de gris DSFR
+    gris-50:        "#F6F6F6"   # --grey-950
+    gris-200:       "#EEEEEE"   # --grey-850
+    gris-425:       "#929292"   # --grey-425
+    gris-625:       "#666666"   # --grey-200
+    texte:          "#161616"   # --grey-50
+    # Couleurs de lien et sémantiques DSFR (mode clair)
+    lien:           "#0063CB"   # --blue-france-sun-113-active (accessible AA)
+    succès:         "#18753C"
+    avertissement:  "#B34000"
+    erreur:         "#CE0500"
+    info:           "#0078F3"
+
+  # Mapping sémantique Bootstrap / Quarto
+  background: blanc
+  foreground: texte
+  primary:    bleu-france
+  secondary:  gris-200
+  link:       lien
+  success:    succès
+  warning:    avertissement
+  danger:     erreur
+  info:       info
+
+# ── Typographie DSFR — police Marianne ───────────────────────────────────────
+typography:
+  fonts:
+    - family: Marianne
+      source: file
+      files:
+        - path: html/dsfr/fonts/Marianne-Light.woff2
+          weight: 300
+          style: normal
+        - path: html/dsfr/fonts/Marianne-Light_Italic.woff2
+          weight: 300
+          style: italic
+        - path: html/dsfr/fonts/Marianne-Regular.woff2
+          weight: 400
+          style: normal
+        - path: html/dsfr/fonts/Marianne-Regular_Italic.woff2
+          weight: 400
+          style: italic
+        - path: html/dsfr/fonts/Marianne-Medium.woff2
+          weight: 500
+          style: normal
+        - path: html/dsfr/fonts/Marianne-Medium_Italic.woff2
+          weight: 500
+          style: italic
+        - path: html/dsfr/fonts/Marianne-Bold.woff2
+          weight: 700
+          style: normal
+        - path: html/dsfr/fonts/Marianne-Bold_Italic.woff2
+          weight: 700
+          style: italic
+    - family: Spectral
+      source: file
+      files:
+        - path: html/dsfr/fonts/Spectral-Regular.woff2
+          weight: 400
+          style: normal
+        - path: html/dsfr/fonts/Spectral-ExtraBold.woff2
+          weight: 800
+          style: normal
+
+  base:      Marianne
+  headings:  Marianne
+  monospace: "'Courier New', Courier, monospace"

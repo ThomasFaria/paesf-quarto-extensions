@@ -1,0 +1,7 @@
+title: Non breaking space french
+author: Romain Lesur - Modifié par Xavier Timbeau
+version: 0.1.0
+quarto-required: ">=1.5.50"
+contributes:
+  filters:
+    - nbsp.lua

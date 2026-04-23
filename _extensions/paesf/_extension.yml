@@ -1,0 +1,86 @@
+title: PAESF Publications
+author: Thomas Faria
+version: 0.1.0
+quarto-required: ">=1.8.26"
+contributes:
+  formats:
+    common:
+      french: true
+      lang: fr
+      toc: false
+      language:
+        fr:
+          section-title-references: "Bibliographie"
+          title-block-author-single: "Par"
+          title-block-author-plural: "Par"
+          title-block-published: "Publié le"
+          title-block-modified: "Modifié le"
+          toc-title: "Sur cette page"
+          crossref-fig-prefix: graphique
+          crossref-tbl-prefix: tableau
+          crossref-eq-prefix: équation
+          crossref-sec-prefix: section
+          crossref-tip-prefix: encadré
+          crossref-fig-title: "Graphique"
+          callout-tip-title: "Encadré"
+          crossref-title-delim: "."
+          crossref-tbl-title: "Tableau"
+          crossref-lof-title: Graphiques
+          crossref-lot-title: Tableaux
+      fig-asp: 0.61
+      cap-location: top
+      filters:
+        - nbsp
+      shortcodes:
+        - fontawesome
+      logo:
+        path: logo-dgt.png
+      mainfont: libertinus serif
+    typst:
+      keep-typ: false
+      logo:
+        width: 5cm
+        location: left-top
+        padding-top: 0cm
+        padding-bottom: 0cm
+        padding-left: 3cm
+        padding-right: 0cm
+        alt: Logo Direction générale du Trésor
+        path: "_extensions/paesf/logo-dgt.png"
+      filters:
+        - typst/titre-section.lua
+        - typst/encadre.lua
+      template-partials:
+        - typst/typst-template.typ
+        - typst/typst-show.typ
+    html:
+      filters:
+        - html/pdf-download.lua
+        - html/callout-dsfr.lua
+      theme:
+        - html/website.scss
+      css:
+        - html/dsfr/dsfr.min.css
+        - html/dsfr/utility/utility.min.css
+      js:
+        - html/dsfr/dsfr.module.min.js
+        - html/dsfr/dsfr.nomodule.min.js
+      include-in-header:
+        - text: '<meta name="theme-color" content="#000091">'
+      include-before-body: html/dsfr-header.html
+      include-after-body:
+        - html/dsfr-footer.html
+        - html/dsfr-scripts.html
+      number-sections: false
+      fig-dpi: 600
+      fig-format: svg
+      reference-location: margin
+      callout-icon: false
+      lightbox: true
+      image-lazy-loading: true
+      hide-description: true
+      grid:
+        sidebar-width: 100px
+        body-width: 1000px
+        margin-width: 250px
+        gutter-width: 1.5rem
