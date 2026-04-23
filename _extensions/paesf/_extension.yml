@@ -46,7 +46,7 @@ contributes:
         padding-left: 3cm
         padding-right: 0cm
         alt: Logo Direction générale du Trésor
-        path: "_extensions/paesf/logo-dgt.png"
+        path: "logo-dgt.png"
       filters:
         - typst/resolve-logo-path.lua
         - typst/titre-section.lua
@@ -54,6 +54,8 @@ contributes:
       template-partials:
         - typst/typst-template.typ
         - typst/typst-show.typ
+      format-resources:
+        - logo-dgt.png
     html:
       filters:
         - html/pdf-download.lua
